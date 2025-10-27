@@ -1,0 +1,3 @@
+-- This class will contain character attributes. It will allow
+-- the game to store character's status, information, attributes,
+-- powers, and resources.
