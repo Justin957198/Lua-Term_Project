@@ -2,7 +2,7 @@ local function maze_generator (num, maze_table)
     for i = 0, num, 1 do
         maze_table[i] = {}
         for j = 0, num, 1 do
-            maze_table[i][j] = math.random(0,1)
+            maze_table[i][j] = math.random(1)
         end
     end
 end
@@ -70,11 +70,11 @@ local num
 
 print("Input maze size")
 num = io.read()
-local number = tonumber(num)
+local size = tonumber(num)
 
-maze_generator(number, maze)
-print(maze_enterance_generator(maze))
-print(maze_exit_generator(maze))
+maze_generator(size, maze)
+--print(maze_enterance_generator(maze))
+--print(maze_exit_generator(maze))
 
 maze_display(maze)
 
