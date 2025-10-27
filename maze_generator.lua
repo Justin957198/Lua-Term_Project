@@ -2,7 +2,7 @@ local function terrain_generator(num, maze_table)
     for i = 0, num, 1 do
         maze_table[i] = {}
         for j = 0, num, 1 do
-            maze_table[i][j] = 1
+            maze_table[i][j] = "■"
         end
     end
 end
@@ -19,8 +19,8 @@ local function bomb_generator(maze_table)
 end
 
 local function terrain_display(maze_table)
-    for i = 0, #maze_table, 1 do
-        for j = 0, #maze_table[i], 1 do
+    for i = 1, #maze_table, 1 do
+        for j = 1, #maze_table[i], 1 do
             io.write(maze_table[i][j] .." ")
         end
         io.write("\n")
