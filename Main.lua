@@ -1,4 +1,4 @@
-local terrain_module = require("maze_generator")
+local terrain_module = require("level_generator")
 
 print("Sample Terrain making tool") -- temp
 
@@ -17,4 +17,5 @@ local length = tonumber(numleng)
 
 terrain_module.terrain_generator(depth, length)
 terrain_module.bomb_generator()
+terrain_module.treasure_generator()
 terrain_module.terrain_display()

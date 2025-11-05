@@ -15,8 +15,19 @@ function terrain_m.bomb_generator()
     for i = 3, #maze_table, 1 do
         for j = 0, #maze_table, 1 do
             local num = math.random(20)
-            if num <= 4 and maze_table[i][j+1] ~= 0 and maze_table[i][j-1] ~= 0 then
+            if num <= 6 and maze_table[i][j+1] ~= 0 and maze_table[i][j-1] ~= 0 then
                 maze_table[i][j] = 0
+            end
+        end
+    end
+end
+
+function terrain_m.treasure_generator()
+    for i = 3, #maze_table, 1 do
+        for j = 0, #maze_table, 1 do
+            local num = math.random(30)
+            if num <= 4 and maze_table[i][j] ~= 0 then
+                maze_table[i][j] = 2
             end
         end
     end
