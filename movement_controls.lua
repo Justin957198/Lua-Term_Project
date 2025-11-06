@@ -41,7 +41,7 @@ function movement_m.move_left(x_p, y_p, maze)
     if maze[x_value][y_value - 1] == nil then
         io.write("***Out of bounds***\n Player still on " .. x_p .. "," .. y_p)
         return x_p, y_p
-    elseif maze[x_value][y_value - 1] == 0 then
+    elseif maze[x_value][y_value - 1] == 0 then -- Bomb Detection
         io.write("You hit a bomb! Game Over!\n")
         os.exit()
     else
