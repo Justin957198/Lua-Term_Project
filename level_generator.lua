@@ -2,9 +2,9 @@ local terrain_m = {}
 local maze_table ={}
 
 function terrain_m.terrain_generator(t_depth, t_length)
-    for i = 1, t_length, 1 do
+    for i = 1, t_length do
         maze_table[i] = {}
-        for j = 1, t_depth, 1 do
+        for j = 1, t_depth do
             maze_table[i][j] = "?"
         end
     end

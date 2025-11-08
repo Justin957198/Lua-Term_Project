@@ -6,10 +6,10 @@ print("Sample Terrain making tool") -- temp
 local numleng
 local numdep
 
-print("Input terrain depth")
+print("Input terrain length")
 numdep = io.read()
 local depth = tonumber(numdep)
-print("Input terrain length")
+print("Input terrain depth")
 numleng = io.read()
 local length = tonumber(numleng)
 
