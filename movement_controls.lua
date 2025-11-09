@@ -30,7 +30,8 @@ function movement_m.move_up(x_p, y_p, maze)
         io.write("***Out of bounds***\n Player still on " .. x_p .. "," .. y_p .."\n")
         return x_p, y_p
     else
-        x_p = x_p -1
+        x_p = x_p - 1
+        io.write("Player diggs to " .. x_p .. "," .. y_p.. "\n")
         return x_p, y_p
     end
 
@@ -45,32 +46,35 @@ function movement_m.move_down(x_p, y_p, maze)
         return x_p, y_p
     else
         x_p = x_p + 1
+        io.write("Player diggs to " .. x_p .. "," .. y_p.. "\n")
         return x_p, y_p
     end
 end
 
 function movement_m.move_left(x_p, y_p, maze)
     local x_value = x_p
-    local y_value = x_p
+    local y_value = y_p
 
     if y_value - 1 < 1 then
         io.write("***Out of bounds***\n Player still on " .. x_p .. "," .. y_p.. "\n")
         return x_p, y_p
     else
         y_p = y_p - 1
+        io.write("Player diggs to " .. x_p .. "," .. y_p.. "\n")
         return x_p, y_p
     end
 end
 
 function movement_m.move_right(x_p, y_p, maze)
     local x_value = x_p
-    local y_value = x_p
+    local y_value = y_p
 
     if y_value + 1 > #maze[1] then
         io.write("***Out of bounds***\n Player still on " .. x_p .. "," .. y_p.. "\n")
         return x_p, y_p
     else
         y_p = y_p + 1
+        io.write("Player diggs to " .. x_p .. "," .. y_p.. "\n")
         return x_p, y_p
     end
 end

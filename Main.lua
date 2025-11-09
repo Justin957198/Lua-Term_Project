@@ -19,6 +19,8 @@ local maze = terrain_module.terrain_generator(depth, length)
 terrain_module.bomb_generator()
 terrain_module.treasure_generator()
 
+io.write("Test maze, length: " .. #maze .. " width: " .. #maze[1] .. "\n")
+
 -- Player Starting Position
 local player_x, player_y = 1, math.random(1, numdep)
 local player_Symbol = "P"
