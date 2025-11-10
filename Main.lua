@@ -1,5 +1,6 @@
 local terrain_module = require("level_generator")
 local movement_module = require("movement_controls")
+local reward_system = require("reward_system")
 
 print("Sample Terrain making tool") -- temp
 
@@ -35,24 +36,64 @@ while true do
     if move == "w" then
         if maze[player_x] and maze[player_x][player_y] then
             player_x, player_y = movement_module.move_up(player_x, player_y, maze)
+            local bomb, treasure, blank = movement_module.check_player(player_x, player_y, maze)
+            if bomb == true then
+                io.write("Bomb hit, Game Over\n")
+                break
+            elseif treasure == true then 
+                io.write("Item found")
+                reward_system.apply_reward(player_x, player_y, maze)
+            else
+                io.write("Nothing here\n")
+            end
         else
             print("Your out of bounds")
         end
     elseif move == "s" then
         if maze[player_x] and maze[player_x][player_y] then
             player_x, player_y = movement_module.move_down(player_x, player_y, maze)
+            local bomb, treasure, blank = movement_module.check_player(player_x, player_y, maze)
+            if bomb == true then
+                io.write("Bomb hit, Game Over\n")
+                break
+            elseif treasure == true then 
+                io.write("Item found")
+                reward_system.apply_reward(player_x, player_y, maze)
+            else
+                io.write("Nothing here\n")
+            end
         else
             print("Your out of bounds")
         end
     elseif move == "a" then
         if maze[player_x] and maze[player_x][player_y] then
             player_x, player_y = movement_module.move_left(player_x, player_y, maze)
+            local bomb, treasure, blank = movement_module.check_player(player_x, player_y, maze)
+            if bomb == true then
+                io.write("Bomb hit, Game Over\n")
+                break
+            elseif treasure == true then 
+                io.write("Item found")
+                reward_system.apply_reward(player_x, player_y, maze)
+            else
+                io.write("Nothing here\n")
+            end
         else
             print("Your out of bounds")
         end
     elseif move == "d" then
         if maze[player_x] and maze[player_x][player_y] then
             player_x, player_y = movement_module.move_right(player_x, player_y, maze)
+            local bomb, treasure, blank = movement_module.check_player(player_x, player_y, maze)
+            if bomb == true then
+                io.write("Bomb hit, Game Over\n")
+                break
+            elseif treasure == true then 
+                io.write("Item found")
+                reward_system.apply_reward(player_x, player_y, maze)
+            else
+                io.write("Nothing here\n")
+            end
         else
             print("Your out of bounds")
         end
