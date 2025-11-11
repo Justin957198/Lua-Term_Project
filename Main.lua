@@ -61,28 +61,56 @@ while continue_Game do
     maze[player_x][player_y] = "."
     if move == "w" then
         if maze[player_x] and maze[player_x][player_y] then
-            player_x, player_y = movement_module.move_up(player_x, player_y, maze)
+            if reward_system.player_stats.dig_power ~= 1 then
+               player_x, player_y = movement_module.move_up(player_x, player_y, maze) 
+               player_x, player_y = movement_module.move_up(player_x, player_y, maze)
+               maze[player_x + 1][player_y] = "."
+               reward_system.reset_turn_bonuses()
+            else
+                player_x, player_y = movement_module.move_up(player_x, player_y, maze)
+            end
             continue_Game = player_Location(player_x, player_y, maze)
         else
             print("Your out of bounds\n")
         end
     elseif move == "s" then
         if maze[player_x] and maze[player_x][player_y] then
-            player_x, player_y = movement_module.move_down(player_x, player_y, maze)
+            if reward_system.player_stats.dig_power ~= 1 then
+                player_x, player_y = movement_module.move_down(player_x, player_y, maze)
+                player_x, player_y = movement_module.move_down(player_x, player_y, maze)
+                maze[player_x - 1][player_y] = "."
+                reward_system.reset_turn_bonuses()
+            else
+                player_x, player_y = movement_module.move_down(player_x, player_y, maze)
+            end
             continue_Game = player_Location(player_x, player_y, maze)
         else
             print("Your out of bounds\n")
         end
     elseif move == "a" then
         if maze[player_x] and maze[player_x][player_y] then
-            player_x, player_y = movement_module.move_left(player_x, player_y, maze)
+            if reward_system.player_stats.dig_power ~= 1 then
+                player_x, player_y = movement_module.move_left(player_x, player_y, maze)
+                player_x, player_y = movement_module.move_left(player_x, player_y, maze)
+                maze[player_x][player_y + 1] = "."
+                reward_system.reset_turn_bonuses()
+            else
+                player_x, player_y = movement_module.move_left(player_x, player_y, maze)
+            end
             continue_Game = player_Location(player_x, player_y, maze)
         else
             print("Your out of bounds\n")
         end
     elseif move == "d" then
         if maze[player_x] and maze[player_x][player_y] then
-            player_x, player_y = movement_module.move_right(player_x, player_y, maze)
+            if reward_system.player_stats.dig_power ~= 1 then
+                player_x, player_y = movement_module.move_right(player_x, player_y, maze)
+                player_x, player_y = movement_module.move_right(player_x, player_y, maze)
+                maze[player_x][player_y - 1] = "."
+                reward_system.reset_turn_bonuses()
+            else
+                player_x, player_y = movement_module.move_right(player_x, player_y, maze)
+            end
             continue_Game = player_Location(player_x, player_y, maze)
         else
             print("Your out of bounds\n")

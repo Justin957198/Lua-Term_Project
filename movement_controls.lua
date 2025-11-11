@@ -31,7 +31,7 @@ function movement_m.move_up(x_p, y_p, maze)
         return x_p, y_p
     else
         x_p = x_p - 1
-        io.write("Player diggs to " .. x_p .. "," .. y_p.. "\n")
+        io.write("Player digs to " .. x_p .. "," .. y_p.. "\n")
         return x_p, y_p
     end
 
@@ -46,7 +46,7 @@ function movement_m.move_down(x_p, y_p, maze)
         return x_p, y_p
     else
         x_p = x_p + 1
-        io.write("Player diggs to " .. x_p .. "," .. y_p.. "\n")
+        io.write("Player digs to " .. x_p .. "," .. y_p.. "\n")
         return x_p, y_p
     end
 end
@@ -60,7 +60,7 @@ function movement_m.move_left(x_p, y_p, maze)
         return x_p, y_p
     else
         y_p = y_p - 1
-        io.write("Player diggs to " .. x_p .. "," .. y_p.. "\n")
+        io.write("Player digs to " .. x_p .. "," .. y_p.. "\n")
         return x_p, y_p
     end
 end
@@ -74,7 +74,7 @@ function movement_m.move_right(x_p, y_p, maze)
         return x_p, y_p
     else
         y_p = y_p + 1
-        io.write("Player diggs to " .. x_p .. "," .. y_p.. "\n")
+        io.write("Player digs to " .. x_p .. "," .. y_p.. "\n")
         return x_p, y_p
     end
 end
