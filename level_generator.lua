@@ -1,11 +1,14 @@
 local terrain_m = {}
 local maze_table ={}
 
+local normal_Tiles = "?"
+local reveal_Bomb_Tiles = "B"
+
 function terrain_m.terrain_generator(t_depth, t_length)
     for i = 1, t_length do
         maze_table[i] = {}
         for j = 1, t_depth do
-            maze_table[i][j] = "?"
+            maze_table[i][j] = normal_Tiles
         end
     end
     return maze_table
@@ -47,7 +50,8 @@ function terrain_m.reveal_bombs(maze)
     for i = 1, #maze do
         for j = 1, #maze[i] do
             if maze[i][j] == 0 then
-                io.write("B ")
+                io.write(reveal_Bomb_Tiles)
+                io.write(" ")
             else
                 io.write(maze[i][j] .. " ")
             end

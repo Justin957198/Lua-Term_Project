@@ -49,7 +49,12 @@ maze[player_x][player_y] = player_Symbol
 local continue_Game = true
 
 while continue_Game do
-    terrain_module.terrain_display()
+    if reward_system.player_stats.bomb_scanner == true then
+        terrain_module.reveal_bombs(maze)
+        reward_system.reset_turn_bonuses()
+    else
+        terrain_module.terrain_display()
+    end
     print("\nUse w/a/s/d to move or q to exit:")
     local move = io.read()
 
