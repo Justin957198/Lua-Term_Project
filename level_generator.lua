@@ -46,6 +46,10 @@ function terrain_m.terrain_display()
 
 end
 
+function terrain_m.generate_win(t_depth, t_length)
+    maze_table[t_length][t_depth] = 4
+end
+
 function terrain_m.reveal_bombs(maze)
     for i = 1, #maze do
         for j = 1, #maze[i] do

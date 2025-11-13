@@ -2,9 +2,12 @@ local terrain_module = require("level_generator")
 local movement_module = require("movement_controls")
 local reward_system = require("reward_system")
 
+local player_Moved = "."
+local player_Symbol = "P"
+
 -- Check player position function
 local function player_Location(player_x, player_y, maze)
-    local bomb, treasure, blank = movement_module.check_player(player_x, player_y, maze)
+    local bomb, treasure, blank, win = movement_module.check_player(player_x, player_y, maze)
     local shield = reward_system.player_stats.shield
     if bomb == true and shield == false then
         io.write("Bomb hit, Game Over\n")
@@ -15,6 +18,9 @@ local function player_Location(player_x, player_y, maze)
     elseif treasure == true then 
         io.write("Item found\n")
         reward_system.apply_reward(player_x, player_y, maze)
+    elseif win == true then
+        io.write("Congrats! You won!\n")
+        os.exit()
     else
         io.write("Nothing here\n")
     end
@@ -43,8 +49,10 @@ io.write("Test maze, length: " .. #maze .. " width: " .. #maze[1] .. "\n")
 
 -- Player Starting Position
 local player_x, player_y = 1, math.random(1, numdep)
-local player_Symbol = "P"
 maze[player_x][player_y] = player_Symbol
+
+local win_x, win_y = length, math.random(1, numdep)
+terrain_module.generate_win(win_y, win_x)
 
 local continue_Game = true
 
@@ -58,13 +66,13 @@ while continue_Game do
     print("\nUse w/a/s/d to move or q to exit:")
     local move = io.read()
 
-    maze[player_x][player_y] = "."
+    maze[player_x][player_y] = player_Moved
     if move == "w" then
         if maze[player_x] and maze[player_x][player_y] then
             if reward_system.player_stats.dig_power ~= 1 then
                player_x, player_y = movement_module.move_up(player_x, player_y, maze) 
                player_x, player_y = movement_module.move_up(player_x, player_y, maze)
-               maze[player_x + 1][player_y] = "."
+               maze[player_x + 1][player_y] = player_Moved
                reward_system.reset_turn_bonuses()
             else
                 player_x, player_y = movement_module.move_up(player_x, player_y, maze)
@@ -78,7 +86,7 @@ while continue_Game do
             if reward_system.player_stats.dig_power ~= 1 then
                 player_x, player_y = movement_module.move_down(player_x, player_y, maze)
                 player_x, player_y = movement_module.move_down(player_x, player_y, maze)
-                maze[player_x - 1][player_y] = "."
+                maze[player_x - 1][player_y] = player_Moved
                 reward_system.reset_turn_bonuses()
             else
                 player_x, player_y = movement_module.move_down(player_x, player_y, maze)
@@ -92,7 +100,7 @@ while continue_Game do
             if reward_system.player_stats.dig_power ~= 1 then
                 player_x, player_y = movement_module.move_left(player_x, player_y, maze)
                 player_x, player_y = movement_module.move_left(player_x, player_y, maze)
-                maze[player_x][player_y + 1] = "."
+                maze[player_x][player_y + 1] = player_Moved
                 reward_system.reset_turn_bonuses()
             else
                 player_x, player_y = movement_module.move_left(player_x, player_y, maze)
@@ -106,7 +114,7 @@ while continue_Game do
             if reward_system.player_stats.dig_power ~= 1 then
                 player_x, player_y = movement_module.move_right(player_x, player_y, maze)
                 player_x, player_y = movement_module.move_right(player_x, player_y, maze)
-                maze[player_x][player_y - 1] = "."
+                maze[player_x][player_y - 1] = player_Moved
                 reward_system.reset_turn_bonuses()
             else
                 player_x, player_y = movement_module.move_right(player_x, player_y, maze)

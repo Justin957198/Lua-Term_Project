@@ -5,17 +5,21 @@ function movement_m.check_player(x_pos, y_pos, maze)
     local on_bomb = false
     local on_treasure = false
     local on_nothing =false
+    local on_win = false
     for i = 1, #maze, 1 do
         for j = 1, #maze[i], 1 do
             if maze[x_pos][y_pos] == 0 then 
                 on_bomb = true 
-                return on_bomb, on_treasure, on_nothing
+                return on_bomb, on_treasure, on_nothing, on_win
             elseif maze[x_pos][y_pos] == 2 then
                 on_treasure = true
-                return on_bomb, on_treasure, on_nothing
+                return on_bomb, on_treasure, on_nothing, on_win
+            elseif maze[x_pos][y_pos] == 4 then
+                on_win = true
+                return on_bomb, on_treasure, on_nothing, on_win
             else
                 on_nothing = true
-                return on_bomb, on_treasure, on_nothing
+                return on_bomb, on_treasure, on_nothing, on_win
             end
             
         end
