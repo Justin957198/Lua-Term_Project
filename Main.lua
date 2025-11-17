@@ -37,8 +37,6 @@ end
 
 print("Sample Terrain making tool") -- temp
 
-local numleng
-local numdep
 local char_name
 local char_age
 
@@ -60,17 +58,21 @@ end
 
 print("__Main Menu__")
 
-print("Input terrain length")
-numdep = io.read()
+local numleng = 12
+local numdep = 12
+local Difficulty
+
+print("Input Icon")
+player_Symbol = io.read()
 local depth = tonumber(numdep)
-print("Input terrain depth")
-numleng = io.read()
+print("Input Difficulty: 1-3")
+Difficulty = io.read()
 local length = tonumber(numleng)
 
 --print(depth .. " and " .. length)
 
 local maze = terrain_module.terrain_generator(depth, length)
-terrain_module.bomb_generator()
+terrain_module.bomb_generator(Difficulty)
 terrain_module.treasure_generator()
 
 io.write("Test maze, length: " .. #maze .. " width: " .. #maze[1] .. "\n")

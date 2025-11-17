@@ -1,13 +1,13 @@
 return {
-  name = "Dave",
-  age = 19,
+  name = "",
+  age = 0,
       -- Main user attributes
-  wins = 6,
-  loss = 3,
+  wins = 0,
+  loss = 0,
       -- Prize data
-  prize_count = 2,
+  prize_count = 0,
       -- Types of prizes
   shields = 0,
-  bomb_scanner = 2,
+  bomb_scanner = 0,
   digging_boost = 0,
 }
