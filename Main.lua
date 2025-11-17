@@ -1,9 +1,13 @@
 local terrain_module = require("level_generator")
 local movement_module = require("movement_controls")
 local reward_system = require("reward_system")
+local character = require("character_class")
 
 local player_Moved = "."
 local player_Symbol = "P"
+local user = character:load()
+
+reward_system.set_user(user)
 
 -- Check player position function
 local function player_Location(player_x, player_y, maze)
@@ -11,6 +15,8 @@ local function player_Location(player_x, player_y, maze)
     local shield = reward_system.player_stats.shield
     if bomb == true and shield == false then
         io.write("Bomb hit, Game Over\n")
+        user:add_loss()
+        user:save()
         return false
     elseif bomb == true and shield == true then
         io.write("Bomb hit, but your shield saved you\n")
@@ -20,6 +26,8 @@ local function player_Location(player_x, player_y, maze)
         reward_system.apply_reward(player_x, player_y, maze)
     elseif win == true then
         io.write("Congrats! You won!\n")
+        user:add_win()
+        user:save()
         os.exit()
     else
         io.write("Nothing here\n")
@@ -31,6 +39,26 @@ print("Sample Terrain making tool") -- temp
 
 local numleng
 local numdep
+local char_name
+local char_age
+
+if user:get_name() ~= "" then
+    print("Welcome,", user:get_name())
+else
+    print("Hello, please enter user name:")
+    local char_name = io.read()
+    user:set_name(char_name)
+
+    print("Please enter user age:")
+    local char_age = io.read()
+    user:set_age(tonumber(char_age))  -- convert input to number
+
+    user:save()
+
+    print("Character created:", user:get_name(), user:get_age())
+end
+
+print("__Main Menu__")
 
 print("Input terrain length")
 numdep = io.read()
