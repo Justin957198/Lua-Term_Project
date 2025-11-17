@@ -42,11 +42,22 @@ function terrain_m.bomb_generator(difficuty)
 end
 
 function terrain_m.treasure_generator(difficuty)
+    local treasure_cap
     local treasure_count = 0
+    if difficuty == "1" then
+        treasure_cap = 15
+    elseif difficuty == "2" then
+        treasure_cap = 20
+    elseif difficuty == "3" then
+        treasure_cap = 30
+    else
+        io.write("Invalid difficuty, 1 auto selected\n")
+        treasure_cap = 15
+    end
     for i = 3, #maze_table, 1 do
         for j = 1, #maze_table[i], 1 do
-            local num = math.random(30)
-            if num <= 4 and maze_table[i][j] ~= 0 then
+            local num = math.random(treasure_cap)
+            if num <= 5 and maze_table[i][j] ~= 0 then
                 maze_table[i][j] = 2
                 treasure_count = treasure_count + 1
             end

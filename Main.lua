@@ -44,7 +44,7 @@ local length = tonumber(numleng)
 
 local maze = terrain_module.terrain_generator(depth, length)
 terrain_module.bomb_generator(Difficulty)
-terrain_module.treasure_generator()
+terrain_module.treasure_generator(Difficulty)
 
 io.write("Test maze, length: " .. #maze .. " width: " .. #maze[1] .. "\n")
 
