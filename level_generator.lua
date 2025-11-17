@@ -4,7 +4,7 @@ local maze_table ={}
 local normal_Tiles = "?"
 local reveal_Bomb_Tiles = "B"
 
-local testing_Mode = false
+local testing_Mode = true
 
 function terrain_m.terrain_generator(t_depth, t_length)
     for i = 1, t_length do
@@ -16,26 +16,43 @@ function terrain_m.terrain_generator(t_depth, t_length)
     return maze_table
 end
 
-function terrain_m.bomb_generator()
+function terrain_m.bomb_generator(difficuty)
+    local random_cap
+    local bomb_count = 0
+    if difficuty == "1" then
+        random_cap = 25
+    elseif difficuty == "2" then
+        random_cap = 20
+    elseif difficuty == "3" then
+        random_cap = 15
+    else
+        io.write("Invalid difficuty, 1 auto selected\n")
+        random_cap = 25
+    end
     for i = 3, #maze_table, 1 do
         for j = 1, #maze_table[i], 1 do
-            local num = math.random(20)
-            if num <= 6 and maze_table[i][j+1] ~= 0 and maze_table[i][j-1] ~= 0 then
+            local num = math.random(random_cap)
+            if num <= 5 and maze_table[i][j+1] ~= 0 and maze_table[i][j-1] ~= 0 then
                 maze_table[i][j] = 0
+                bomb_count = bomb_count + 1
             end
         end
     end
+    io.write("Bombs generated: " .. bomb_count .. "\n")
 end
 
-function terrain_m.treasure_generator()
+function terrain_m.treasure_generator(difficuty)
+    local treasure_count = 0
     for i = 3, #maze_table, 1 do
         for j = 1, #maze_table[i], 1 do
             local num = math.random(30)
             if num <= 4 and maze_table[i][j] ~= 0 then
                 maze_table[i][j] = 2
+                treasure_count = treasure_count + 1
             end
         end
     end
+    io.write("Treasures generated: " .. treasure_count .. "\n")
 end
 
 function terrain_m.terrain_display()
