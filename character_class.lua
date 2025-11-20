@@ -24,7 +24,6 @@ end
 
 
 -- Save data
-
 function character:save()
     local file = io.open("user_data.lua", "w")
 
@@ -48,11 +47,45 @@ function character:save()
 
 end
 
+-- Reset Dta!
+function character:reset()
+    self.name = ""
+    self.age = 0
+    self.wins = 0
+    self.loss = 0
+
+    -- Prize data
+    self.prize_count = 0
+    -- Types of prizes
+    self.shields = 0
+    self.bomb_scanner = 0
+    self.digging_boost = 0
+    self:save()
+end
 
 -- load data from disk
 function character.load()
     local data = dofile("user_data.lua")
     return character:new(data)
+end
+
+-- Get Stats
+function character:getUserStats()
+    local totalGames = self.wins + self.loss
+    local winPercentage = (totalGames > 0) and (self.wins / totalGames * 100) or 0
+    local lossPercentage = (totalGames > 0) and (self.loss / totalGames * 100) or 0
+
+    print(
+        "\nWins:                                      ", self.wins,
+        "\nLosses:                                  ", self.loss,
+        "\nPrizes:                                  ", self.prize_count,
+        "\nShields:                                 ", self.shields,
+        "\nBomb Scanners:                           ", self.bomb_scanner,
+        "\nDigging Boosts:                          ", self.digging_boost,
+        "\nTotal Games Played:                      ", totalGames,
+        string.format("\nWin percentage:                                 %.2f%%", winPercentage),
+        string.format("\nLoss percentage:                                %.2f%%", lossPercentage)
+    )
 end
 
 -- User name setter and getter
