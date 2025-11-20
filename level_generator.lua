@@ -20,7 +20,7 @@ function terrain_m.bomb_generator(difficuty)
     local random_cap
     local bomb_count = 0
     if difficuty == "1" then
-        random_cap = 25
+        random_cap = 30
     elseif difficuty == "2" then
         random_cap = 20
     elseif difficuty == "3" then
@@ -29,7 +29,7 @@ function terrain_m.bomb_generator(difficuty)
         io.write("Invalid difficuty, 1 auto selected\n")
         random_cap = 25
     end
-    for i = 3, #maze_table, 1 do
+    for i = 4, #maze_table, 1 do
         for j = 1, #maze_table[i], 1 do
             local num = math.random(random_cap)
             if num <= 5 and maze_table[i][j+1] ~= 0 and maze_table[i][j-1] ~= 0 then
