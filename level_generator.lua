@@ -33,7 +33,7 @@ function terrain_m.bomb_generator(difficuty)
         for j = 1, #maze_table[i], 1 do
             local num = math.random(random_cap)
             if num <= 5 and maze_table[i][j+1] ~= 0 and maze_table[i][j-1] ~= 0 then
-                maze_table[i][j] = 0
+                maze_table[i][j] = "?"
                 bomb_count = bomb_count + 1
             end
         end
@@ -58,7 +58,7 @@ function terrain_m.treasure_generator(difficuty)
         for j = 1, #maze_table[i], 1 do
             local num = math.random(treasure_cap)
             if num <= 5 and maze_table[i][j] ~= 0 then
-                maze_table[i][j] = 2
+                maze_table[i][j] = "?"
                 treasure_count = treasure_count + 1
             end
         end
