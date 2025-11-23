@@ -1,10 +1,10 @@
 local terrain_m = {}
 local maze_table ={}
 
-local normal_Tiles = "?"
+local normal_Tiles = "■"
 local reveal_Bomb_Tiles = "B"
 
-local testing_Mode = true
+local testing_Mode = false
 
 function terrain_m.terrain_generator(t_depth, t_length)
     for i = 1, t_length do
@@ -33,7 +33,7 @@ function terrain_m.bomb_generator(difficuty)
         for j = 1, #maze_table[i], 1 do
             local num = math.random(random_cap)
             if num <= 5 and maze_table[i][j+1] ~= 0 and maze_table[i][j-1] ~= 0 then
-                maze_table[i][j] = "?"
+                maze_table[i][j] = 0 -- DONT TOUCH
                 bomb_count = bomb_count + 1
             end
         end
@@ -58,7 +58,7 @@ function terrain_m.treasure_generator(difficuty)
         for j = 1, #maze_table[i], 1 do
             local num = math.random(treasure_cap)
             if num <= 5 and maze_table[i][j] ~= 0 then
-                maze_table[i][j] = "?"
+                maze_table[i][j] = 2 -- DONT TOUCH
                 treasure_count = treasure_count + 1
             end
         end
@@ -78,7 +78,7 @@ function terrain_m.terrain_display()
         for i = 1, #maze_table, 1 do
             for j = 1, #maze_table[i], 1 do
                 if maze_table[i][j] == 0 or maze_table[i][j] == 2 then
-                    io.write("?" .." ")
+                    io.write(normal_Tiles .." ")
                 else
                     io.write(maze_table[i][j] .." ")
                 end
@@ -100,7 +100,7 @@ function terrain_m.reveal_bombs(maze)
                 io.write(" ")
             else
                 if maze_table[i][j] == 2 then
-                    io.write("?" .. " ")
+                    io.write(normal_Tiles .. " ")
                 else
                     io.write(maze[i][j] .. " ")
                 end

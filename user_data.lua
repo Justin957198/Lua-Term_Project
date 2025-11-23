@@ -2,12 +2,12 @@ return {
   name = "Dave",
   age = 19,
       -- Main user attributes
-  wins = 1,
-  loss = 3,
+  wins = 3,
+  loss = 4,
       -- Prize data
-  prize_count = 159,
+  prize_count = 175,
       -- Types of prizes
-  shields = 29,
-  bomb_scanner = 47,
-  digging_boost = 83,
+  shields = 35,
+  bomb_scanner = 53,
+  digging_boost = 87,
 }

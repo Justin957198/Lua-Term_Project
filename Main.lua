@@ -3,7 +3,7 @@ local movement_module = require("movement_controls")
 local reward_system = require("reward_system")
 local character = require("character_class")
 
-local player_Moved = "."
+local player_Moved = "▪"
 local player_Symbol = "P"
 local user = character:load()
 
